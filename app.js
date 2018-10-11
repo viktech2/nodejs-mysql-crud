@@ -1,7 +1,8 @@
 var express = require('express')
 var app = express()
-
+var path = require('path');
 var mysql = require('mysql')
+var logger = require('morgan');
 
 /**
  * This middleware provides a consistent API 
@@ -95,6 +96,7 @@ app.use(methodOverride(function (req, res) {
 var flash = require('express-flash')
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+app.use(logger('dev'));
 
 app.use(cookieParser('keyboard cat'))
 app.use(session({ 
@@ -104,6 +106,10 @@ app.use(session({
 	cookie: { maxAge: 60000 }
 }))
 app.use(flash())
+
+console.log(path.join(__dirname, 'public'));
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', index)
