@@ -21,6 +21,9 @@
 								<li><a href="/">Home</a></li>
 								<li><a href="/users/add">New User</a></li>
 								<li><a href="/users">User List</a></li>
+								<% if(session.is_login) {%>
+									<li><a href="/logout">Logout</a></li>
+								<% }%>
 							</ul>
 						</div>
 					

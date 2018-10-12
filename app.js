@@ -41,6 +41,7 @@ app.set('view engine', 'ejs')
 var index = require('./routes/index')
 var users = require('./routes/users')
 var login = require('./routes/login')
+var logout = require('./routes/logout')
 
 
 /**
@@ -99,14 +100,23 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 app.use(logger('dev'));
 
-app.use(cookieParser('keyboard cat'))
+app.use(cookieParser('iamvikash'))
+var sess;
 app.use(session({ 
-	secret: 'keyboard cat',
+	secret: 'iamvikash',
 	resave: false,
 	saveUninitialized: true,
 	cookie: { maxAge: 60000 }
 }))
 app.use(flash())
+
+// To get session in template
+// middleware to make 'user' available to all templates
+
+app.use(function(req,res,next){
+    res.locals.session = req.session;
+    next();
+});
 
 //console.log(path.join(__dirname, 'public'));
 
@@ -116,6 +126,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', index)
 app.use('/users', users)
 app.use('/login', login)
+app.use('/logout', logout)
 
 
 app.listen(3000, function(){

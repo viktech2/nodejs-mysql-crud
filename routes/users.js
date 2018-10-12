@@ -3,6 +3,12 @@ var app = express.Router()
 
 // SHOW LIST OF USERS
 app.get('/', function(req, res, next) {
+
+	sess = req.session;
+	if(!sess.email){
+		res.redirect('login');
+		return false;
+	}
 	req.getConnection(function(error, conn) {
 		conn.query('SELECT * FROM users ORDER BY id DESC',function(err, rows, fields) {
 			//if(err) throw err
@@ -25,6 +31,12 @@ app.get('/', function(req, res, next) {
 
 // SHOW ADD USER FORM
 app.get('/add', function(req, res, next){	
+
+	sess = req.session;
+	if(!sess.is_login){
+		res.redirect('../login');
+		return false;
+	}
 	// render to views/user/add.ejs
 	res.render('user/add', {
 		title: 'Add New User',

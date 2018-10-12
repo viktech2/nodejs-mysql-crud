@@ -1,9 +1,20 @@
-var express = require('express')
-var app = express()
+var express = require('express');
+var app = express();
 
 app.get('/', function(req, res) {
 	// render to views/index.ejs template file
-	res.render('index', {title: 'Home'})
+	sess = req.session;console.log(sess);
+	if(sess.is_login){
+		res.render('index', 
+		{
+			title: 'Home',
+			data: 'Welcome to Express CRUD!'
+		}
+		);		
+	}else{
+		res.redirect('login');
+	}
+	
 })
 
 /** 
