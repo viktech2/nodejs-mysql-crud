@@ -5,7 +5,7 @@ var app = express.Router()
 app.get('/', function(req, res, next) {
 
 	sess = req.session;
-	if(!sess.email){
+	if(!sess.is_login){
 		res.redirect('login');
 		return false;
 	}
