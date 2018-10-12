@@ -1,0 +1,43 @@
+<!--
+including header content which is common for all pages
+-->
+
+<%- include layouts/header.ejs %>
+
+<% if(messages.error) { %>
+	<p style="color:red"><%- messages.error %></p>
+<% } %>
+
+
+<% if(messages.success) { %>
+	<p style="color:green"><%- messages.success %></p>
+<% } %>
+
+<div class="container">
+
+    <div class="col-md-4">
+        <h3><%= title %></h3>
+        <form action="/login/process" method="post">
+            <div class="form-group">
+              <label for="email">Email:</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+            <div class="form-group">
+              <label for="pwd">Password:</label>
+              <input type="password" class="form-control" id="pwd" name="pass">
+            </div>
+          <!--   <div class="checkbox">
+              <label><input type="checkbox"> Remember me</label>
+            </div> -->
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+
+    </div>
+</div>
+
+
+<!--
+including footer content which is common for all pages
+-->
+
+<%- include layouts/footer.ejs %>

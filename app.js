@@ -40,6 +40,7 @@ app.set('view engine', 'ejs')
  */ 
 var index = require('./routes/index')
 var users = require('./routes/users')
+var login = require('./routes/login')
 
 
 /**
@@ -107,13 +108,15 @@ app.use(session({
 }))
 app.use(flash())
 
-console.log(path.join(__dirname, 'public'));
+//console.log(path.join(__dirname, 'public'));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use('/', index)
 app.use('/users', users)
+app.use('/login', login)
+
 
 app.listen(3000, function(){
 	console.log('Server running at port 3000: http://127.0.0.1:3000')

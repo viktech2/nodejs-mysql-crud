@@ -4,7 +4,7 @@
   "description": "Node.js CRUD application using MySQL",
   "main": "index.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -25,6 +25,7 @@
     "express-validator": "^3.2.1",
     "method-override": "^2.3.10",
     "morgan": "^1.9.1",
-    "mysql": "^2.16.0"
+    "mysql": "^2.16.0",
+    "nodemon": "^1.18.4"
   }
 }
