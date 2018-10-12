@@ -12,7 +12,7 @@ app.get('/', function(req, res) {
 app.post('/process', function(req, res, next){
     sess = req.session;
     sess.is_login = false;
-    
+
     req.assert('email', 'Email is required').notEmpty();
     req.assert('pass', 'Password is required').notEmpty();
 
@@ -31,7 +31,7 @@ app.post('/process', function(req, res, next){
                     res.render('login', {title: 'Login'});
                 }else{
 
-                    console.log(rows[0].email);
+                    console.log(rows);
                     if(rows.length){
                         sess.email = rows[0].email;
                         sess.is_login = true;
